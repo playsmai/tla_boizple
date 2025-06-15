@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TLa Boizple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(to bottom right, #f0f4f8, #dfe6ed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+        h1 { font-size: 2em; margin-bottom: 12px; color: #222; }
+        p { font-size: 1em; margin-bottom: 20px; color: #555; }
+        input, button {
+            font: inherit;
+            padding: 12px;
+            width: 100%;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        button {
+            background: #007aff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        #verifyArea, #aliasResult {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🌍 Welcome to TLa Boizple</h1>
+        <p>Protect your identity. Create your masked email in seconds.</p>
+        <div id="emailStep">
+            <input type="email" id="realEmail" placeholder="Enter your real email (e.g. Gmail)" required>
+            <button onclick="sendCode()">Get 5-digit Code</button>
+        </div>
+        <div id="verifyArea">
+            <input type="text" id="verifyCode" placeholder="Enter your 5-digit code" maxlength="5">
+            <button onclick="verifyAndAlias()">Verify & Generate Alias</button>
+        </div>
+        <div id="aliasResult"></div>
+    </div>
+    <script>
+        const apiUrl = "https://your-render-api.onrender.com";
+        function sendCode() {
+            const email = document.getElementById("realEmail").value;
+            fetch(apiUrl + "/send-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            }).then(res => res.json())
+              .then(() => {
+                  alert("5-digit code sent (simulated). Check your inbox.");
+                  document.getElementById("verifyArea").style.display = "block";
+              });
+        }
+        function verifyAndAlias() {
+            const email = document.getElementById("realEmail").value;
+            const code = document.getElementById("verifyCode").value;
+            fetch(apiUrl + "/verify-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, code })
+            }).then(res => res.json())
+              .then(data => {
+                  if (data.alias) {
+                      document.getElementById("aliasResult").style.display = "block";
+                      document.getElementById("aliasResult").innerHTML =
+                        "<p>✅ Your alias: <strong>" + data.alias + "</strong><br>All emails forward to: " + email + "</p>";
+                  } else {
+                      alert("Invalid code. Try again.");
+                  }
+              });
+        }
+    </script>
+</body>
+</html>
