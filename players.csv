@@ -1,0 +1,17 @@
+# playgo.R
+# This script reads player scores from players.csv
+# and prints a summary of their average scores.
+
+# Load dataset
+players <- read.csv("players.csv", stringsAsFactors = FALSE)
+
+# Show the raw data
+print("Player data:")
+print(players)
+
+# Summarize average scores by player
+summary_tbl <- aggregate(score ~ name, data = players, FUN = mean)
+
+print("Average scores by player:")
+print(summary_tbl)
+
