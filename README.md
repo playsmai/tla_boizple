@@ -1,42 +1,42 @@
-# TLa Boizple - Masked Email Web App
+# TLa Boizple — Masked Email Web App + R Playground
 
-Built by **@playsmai** 💻
-
-TLa Boizple lets users create masked email aliases like `queenbee@plaboi.st` that auto-forward to their real address.  
-It uses **FastAPI** for the backend and a beautiful, Apple-style HTML frontend.
+**Author:** @playsmai
 
 ---
 
-## 🌐 Features
-
-- ✅ Email verification via 5-digit code
-- ✅ Fastmail-ready alias logic (mocked for now)
-- ✅ Slack notification support (optional)
-- ✅ Mobile-first responsive UI
-- ✅ Ready to deploy on **Render** and **Vercel**
+## Overview
+TLa Boizple is a dual project:
+1. **FastAPI Web App** — create masked email aliases (like `queenbee@plaboi.st`) that forward to your real address.  
+2. **R Playground** — small R scripts for learning and data demos (e.g., `playgo.R` simulates a simple game).
 
 ---
 
-## 🚀 Deployment Guide
-
-### 1. Backend (Render)
-
-1. Go to [https://render.com](https://render.com)
-2. Create a new **Web Service**
-3. Use this repo as the source
-4. Start command:  
-   ```
-   uvicorn main:app --host=0.0.0.0 --port=10000
-   ```
-
-### 2. Frontend (Vercel)
-
-1. Go to [https://vercel.com](https://vercel.com)
-2. Upload the `frontend/` folder or connect it to this repo
-3. Set the deploy output to `index.html`
+## Features
+- Email verification via 5-digit code  
+- Fastmail-style alias logic (mocked)  
+- Slack notification support (optional)  
+- Mobile-first responsive UI  
+- R scripts for data simulation and analysis  
 
 ---
 
-## 👋 Author
+## How to Run
+### Web App
+- Backend: `uvicorn main:app --host=0.0.0.0 --port=10000`  
+- Deploy via Render or Vercel (see `render.yaml`)  
 
-Built by `@playsmai` with assistance from OpenAI GPT.
+### R Playground
+- Open `r_playground/playgo.R` in [Posit Cloud](https://posit.cloud/) or RStudio  
+- Run to simulate a game and print results  
+
+---
+
+## Services I Offer
+I can help with:
+- ✅ Data cleaning & summary reports (CSV → clean + analysis + chart)  
+- ✅ R script fixes, refactor to Tidyverse style  
+- ✅ Small web app deploys (FastAPI / static sites on Render or Vercel)  
+
+📩 Contact: [GitHub @playsmai](https://github.com/playsmai)
+
+---
